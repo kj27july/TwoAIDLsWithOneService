@@ -23,17 +23,21 @@ class MainActivity : AppCompatActivity() {
     private fun initConnection() {
         val intent = Intent(IAdd::class.java.name)
         intent.action = "service.calc"
+        intent.putExtra("Id", 2);
         intent.setPackage("net.di.aidlasreturntype")
         bindService(intent, serviceConnection, BIND_AUTO_CREATE)
     }
 
     private val serviceConnection: ServiceConnection = object : ServiceConnection {
+
         override fun onServiceConnected(componentName: ComponentName, iBinder: IBinder) {
             Log.d("kajal", "Service Connected:componentName$componentName")
             iAdd = IAdd.Stub.asInterface(iBinder)
-            val res=iAdd.getSum(2,4)
+            val res = iAdd.getSum(2, 4)
+//            iAdd.iMessage.displayMessage()
             Log.d("kajal", "result:$res")
         }
+
         override fun onServiceDisconnected(componentName: ComponentName) {
             Log.d("kajal", "Service Disconnected")
         }
@@ -41,17 +45,10 @@ class MainActivity : AppCompatActivity() {
 }
 
 
-
-
-
-
-
-
-
 //
 //val intent2 = Intent(IMessage::class.java.name)
 ///*this is service name which has been declared in the server's manifest file in service's intent-filter*/
-//intent2.action = "service.calc"
+//intent2.action = "service.msg"
 //intent2.putExtra("Id", 2);
 //intent2.setPackage("net.di.aidlasreturntype")
 

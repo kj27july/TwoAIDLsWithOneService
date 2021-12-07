@@ -14,14 +14,26 @@ class IpcService : Service() {
     }
 
     val iAdd = object : IAdd.Stub() {
+
         override fun getSum(a: Int, b: Int): Int {
             return a + b
         }
-    }
 
+//        fun getMessage(): IBinder {
+//            val iMessage = object : IMessage.Stub() {
+//                override fun displayMessage() {
+//                    Log.d("kajal", "displayMessage-in A")
+//                }
+//            }
+//            return iMessage
+//        }
+    }
     val iMessage = object : IMessage.Stub() {
         override fun displayMessage() {
             Log.d("kajal", "displayMessage-in A")
         }
     }
 }
+
+
+//val id= intent?.getIntExtra("Id",0)
